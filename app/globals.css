@@ -1,0 +1,301 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 34, 34, 34; /* Darker start color */
+  --background-end-rgb: 0, 0, 0; /* Dark end color */
+  --overlay-opacity: 0.7;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+    --overlay-opacity: 0.8;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      rgba(var(--background-start-rgb), 0.9),
+      rgba(var(--background-end-rgb), 1)
+    );
+  animation: gradientAnimation 10s infinite alternate, fadeIn 2s ease-in-out;
+  position: relative;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background: linear-gradient(to bottom, rgba(var(--background-start-rgb), 0.8), rgba(var(--background-end-rgb), 1));
+  }
+  50% {
+    background: linear-gradient(to bottom, rgba(var(--background-start-rgb), 0.7), rgba(var(--background-end-rgb), 0.9));
+  }
+  100% {
+    background: linear-gradient(to bottom, rgba(var(--background-start-rgb), 0.8), rgba(var(--background-end-rgb), 1));
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, var(--overlay-opacity));
+  backdrop-filter: blur(15px); /* More blur for a modern effect */
+  z-index: 1;
+}
+
+.window-blur {
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 0 20px rgba(21, 1, 43, 0.5);
+  transition: backdrop-filter 0.5s ease, box-shadow 0.5s ease;
+}
+
+.window-blur:hover {
+  backdrop-filter: blur(15px);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.7);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .animate-blur {
+    animation: blurEffect 3s infinite;
+  }
+}
+
+@keyframes blurEffect {
+  0% {
+    backdrop-filter: blur(0);
+  }
+  50% {
+    backdrop-filter: blur(5px);
+  }
+  100% {
+    backdrop-filter: blur(0);
+  }
+}
+
+
+/* globals.css */
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+ 
+}
+.main-container {
+  flex: 1; /* Ensures content fills the screen */
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.9); /* Darker footer */
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Navbar Styles */
+.navbar {
+  background-color: rgba(8, 1, 26, 0.8); /* Dark navbar */
+  color: white;
+  padding: 20px 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+}
+
+.navbar .nav-links {
+  list-style-type: none;
+  display: flex;
+  gap: 30px;
+}
+
+.navbar .nav-links a {
+  font-size: 1.2rem;
+  color: white;
+}
+
+.navbar .nav-links a:hover {
+  color: #fbbf24;
+}
+
+/* Main Container */
+.main-container {
+  padding-top: 80px; /* Adjust to prevent navbar overlap */
+  scroll-behavior: smooth;
+}
+
+/* Section Styles */
+section {
+  padding: 80px 20px;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(to right, rgba(34, 34, 34, 0.5), rgba(0, 0, 0, 0.7)); /* Dark gradient */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  z-index: 2;
+}
+
+/* Hero Section */
+#home {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+}
+
+#home h1 {
+  font-size: 4rem;
+  animation: fadeIn 2s ease-out;
+}
+
+#home .cta-button {
+  background-color: #fbbf24;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: bold;
+  margin-top: 30px;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+#home .cta-button:hover {
+  background-color: #eab308;
+}
+
+/* How to Win Section */
+#how-to {
+  background-color: #16022c; /* Darker background for section */
+}
+
+#how-to .steps {
+  display: flex;
+  gap: 40px;
+  margin-top: 40px;
+  z-index: 2;
+}
+
+.step {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Lighter shadow for modern look */
+  width: 250px;
+  transition: transform 0.3s ease;
+}
+
+.step:hover {
+  transform: scale(1.05);
+}
+
+/* Payout Section */
+#payout {
+  background-color: #222; /* Darker background */
+  color: white;
+}
+
+#payout .payout-table {
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background-color: rgba(255, 255, 255, 0.05); /* Transparent table background */
+}
+
+#payout .payout-table th,
+#payout .payout-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+#payout .payout-table th {
+  background-color: #444;
+}
+
+#payout .payout-table tr:nth-child(even) {
+  background-color: #333; /* Darker rows */
+}
+
+/* Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section {
+  animation: fadeIn 1s ease-out;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .navbar .nav-links {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .step {
+    width: 100%;
+  }
+}
